@@ -1,6 +1,6 @@
-""" This is the test file for Assignment 8 """
+""" This is the test file for Assignment 10 """
 import unittest
-from StudentRepository_Vaishnavi_Gopalakrishnan import date_arithmetic, file_reader, FileAnalyzer
+from HW08_StudentRepository_Vaishnavi_Gopalakrishnan import date_arithmetic, file_reader, FileAnalyzer
 
 
 class TestModuleGeneratorFile(unittest.TestCase):
