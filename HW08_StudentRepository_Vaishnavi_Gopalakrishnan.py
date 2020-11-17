@@ -45,25 +45,26 @@ def file_reader(path: str, fields: int, sep: str = ',', header: bool = 'False') 
         raise FileNotFoundError("File not found")
     else:
         line_num: int = 0
-        header: bool = True
+
         with filename:
             for line in filename:
                 line_num += 1
                 try:
                     sep_line = tuple(line.strip('\n').split(sep))
+                    # print(sep_line)
+                    # print(header)
                     if len(sep_line) != fields:
                         raise ValueError
+                    else:
+                        if header == False:
+                            yield sep_line
+                        else:
+                            header = False
+                            continue
 
                 except ValueError:
                     print("{} has {} fields on line {}, but expected {} fields.".format(
                         path, len(sep_line), line_num, fields))
-
-                else:
-                    if header == True:
-                        header = False
-                        continue
-                    else:
-                        yield sep_line
 
 
 class FileAnalyzer():
