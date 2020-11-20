@@ -31,12 +31,28 @@ Each line has the format: Student CWID\tCourse\tLetterGrade\tInstructor CWID
 
 ## Iteration 2:
 
-### 1. Add the new functionality to compute the student's GPA
+1. Add the new functionality to compute the student's GPA
 
-### 2. Add new functionality to read the majors file and calculate the remaining required and elective classes for each student
+2. Add new functionality to read the majors file and calculate the remaining required and elective classes for each student
 
-### 3. Add a new Majors prettytable
+3. Add a new Majors prettytable
 
-### 4. Update the Student prettytable to include the student's GPA and remaining classes and electives for each student
+4. Update the Student prettytable to include the student's GPA and remaining classes and electives for each student
 
-### 5. Implement automated tests to verify that the data in the prettytables matches the data from the input data files.
+5. Implement automated tests to verify that the data in the prettytables matches the data from the input data files.
+
+## Iteration 3
+1. Create a new SQLite database
+2. Import input files into your database
+3. Use DataGrip to open your new SQLite database and import the four files into your database as separate tables. 
+4. Run queries to answer the following questions.  Submit screen dumps of DataGRIP to show your query and results for each of the following queries:
+What is the name of the student with CWID='10115'   (NOTE: if you don't find any matching records then verify that the CWID has type TEXT in all four tables.   Integers don't match strings in SQL or Python.)
+What is the total number of students by major?  Hint:  you'll need count(*) and 'group by'.  See the slide on "Aggregate functions and GROUP BY".
+What is the most frequent grade for SSW 810 across all students?
+Display the name and cwid of each student along with the total number of courses taken by the student.   Hint: You'll need to join the students and grades tables on StudentCWID and CWID.
+Display each student's name,  CWID, course, grade, and the instructor's name  for all students and grades.  The result should be sorted by the student's name. Hint: You'll need to join the grades and students tables on StudentCWID and CWID and join the instructors table using the instructor's CWID.  E.g. Bezos, J, CWID 10115, earned an 'A' in SSW 810 taught by Rowland.
+5. Create a new branch in your GitHub repository for HW11 from your HW10 assignment and add the following new features to your code:
+Update your code to use the new data files that use '\t' to separate the fields and each file has a header record
+Add a new student_grades_table_db(self, db_path) method to your Repository class to create a new student grades PrettyTable that retrieves the data for the table from the database you created above using 'db_path' to specify the path of your SQLite database file.  Use Python calls to execute the student grades summary query you defined above and use the data from executing the query to generate and display a student grades PrettyTable with the results.
+Add a new automated test to verify that the data retrieved from the database matches the expected rows.
+6. Add your database file to your GitHub repository. 
