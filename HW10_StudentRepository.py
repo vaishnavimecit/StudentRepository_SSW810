@@ -30,20 +30,28 @@ class Student:
             Update courses each time finding a course info """
         self.courses[course] = grade
 
-    # def compute_GPA(self):
-        # further implementation
+    def gpa(self) -> float:
+        """Calculate the GPA using dictionary"""
+        grades: Dict[str, float] = {'A': 4.0, 'A-': 3.75, 'B+': 3.25, 'B': 3.0, 'B-': 2.75,
+                                    'C+': 2.25, 'C': 2.0, "C-": 0.00, "D+": 0.00, "D": 0.00, "D-": 0.00, "F": 0.00}
+        try:
+            total: float = sum(
+                [grades[grade] for grade in self.courses.values()]) / len(self.courses.values())
+            return round(total, 2)
+        except ZeroDivisionError as e:
+            print(e)
 
     def get_whole_info(self):
         """ return whole info of students including grades """
-        return [self.CWID, self.name, self.major, self.courses]
+        return [self.CWID, self.name, self.major, self.courses, self.gpa]
 
     def get_student_info(self):
         """ return the details for a single student in a list
             Note: a student may just registered in the college having no course info """
         if not self.courses.items():
-            return [self.CWID, self.name, self.major, None, None]
+            return [self.CWID, self.name, self.major, None, None, None, None]
         else:
-            return [self.CWID, self.name, self.major, sorted(list(self.courses.keys()))]
+            return [self.CWID, self.name, self.major, sorted(list(self.courses.keys())), self.gpa()]
 
 
 class Instructor:
@@ -227,14 +235,15 @@ class University:
     def print_student_table(self):
         """ generate the prettytable for students summary """
         pt = PrettyTable(field_names=[
-                         'CWID', 'Name', 'Major', 'Completed Courses', 'Remaining Required', 'Remaining Electives'])
+                         'CWID', 'Name', 'Major', 'Completed Courses', 'Remaining Required', 'Remaining Electives', 'GPA'])
         for person in self.students.values():
             # calculating remaining required and elective courses
             courses = self.majors[person.major].update_courses_info(
                 person.courses)
 
-            CWID, name, major, course = person.get_student_info()
-            person_info = [CWID, name, major]  # ignore the courses info
+            CWID, name, major, c, GPA = person.get_student_info()
+
+            person_info = [CWID, name, major, GPA]
             for item in courses:
                 person_info.append(item)
 
