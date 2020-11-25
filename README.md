@@ -56,3 +56,17 @@ Update your code to use the new data files that use '\t' to separate the fields 
 Add a new student_grades_table_db(self, db_path) method to your Repository class to create a new student grades PrettyTable that retrieves the data for the table from the database you created above using 'db_path' to specify the path of your SQLite database file.  Use Python calls to execute the student grades summary query you defined above and use the data from executing the query to generate and display a student grades PrettyTable with the results.
 Add a new automated test to verify that the data retrieved from the database matches the expected rows.
 6. Add your database file to your GitHub repository. 
+
+## Iteration 4
+Build a new web page to display the new student grades prettytable from HW11 as a web page.
+
+Install Flask along with the database created for Homework 11.  
+
+1. Create a directory structure for your solution with a 'templates' subdirectory, and a base.html template.
+2. Define a query using your SQLite database from Homework 11 that calculates the Student's name, CWID, the name of the course, grade earned, and the instructor's name.
+3. Create a new template file for your new web page.  Create an HTML with static data to test your HTML.
+4. Update the static HTML to include Jinja2 variables and statements to use data passed with the render_template() call.
+5. Create a Flask Python application to run your application.
+6. Demonstrate that your code works properly by submitting a .zip file with all of the files from your solution plus a screen dump of your browser showing the output.
+7. Update your GitHub repository to include a new branch with the web solution. 
+8. After that, celebrate the fact that you've completed your last homework assignment for SSW 810!
